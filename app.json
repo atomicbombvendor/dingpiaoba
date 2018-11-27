@@ -2,14 +2,29 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/my",
-    "pages/my1",
     "pages/my/my"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarBackgroundColor": "#00c8a6",
+    "navigationBarTitleText": "订票助手",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "icon/index.png",
+        "selectedIconPath":"icon/index_f.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "iconPath": "icon/my.png",
+        "selectedIconPath": "icon/my_f.png",
+        "text": "我的"
+      }
+    ]
   }
 }

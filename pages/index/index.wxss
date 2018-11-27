@@ -1,4 +1,5 @@
 /**index.wxss**/
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -7,7 +8,7 @@
 
 .userinfo-avatar {
   width: 128rpx;
-  height: 128rpx;
+  height: 128rpx; 
   margin: 20rpx;
   border-radius: 50%;
 }
@@ -18,4 +19,70 @@
 
 .usermotto {
   margin-top: 200px;
+}
+
+.red_text {
+  font-family: "微软雅黑";
+  color: red;
+}
+
+.ticket_form {
+  border-left-width: 10rpx;
+  border-right-width: 10rpx;
+  border-top-style: solid;
+  border-top-width: 2rpx;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-bottom: 50px;
+}
+
+.notice {
+  font-size: 30rpx;
+}
+
+.input_name {
+  font-family: "微软雅黑";
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+/* .panel {
+  margin-top: 20rpx;
+} */
+
+.table {
+  border: 2rpx solid darkgray;
+}
+
+.table_tr {
+  border: 1px solid #e9e9e9;
+  padding: 8rpx 16rpx;
+  text-align: left;
+}
+
+.table_th {
+  background: #e9e9e9;
+}
+
+.table_td {
+  padding: 8rpx 16rpx;
+  text-align: center;
+  width: 40%;
+}
+
+.borde_left {
+  border-left: 1px solid #e9e9e9;
+}
+
+.table_td_id {
+  /* background: red; */
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  line-height:3.0rem;
+}
+
+.hidden{
+  visibility: hidden;
 }
