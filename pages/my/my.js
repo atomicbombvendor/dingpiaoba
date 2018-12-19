@@ -1,66 +1,39 @@
-// pages/my/my.js
+// pages/test/test.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+    tickets: [{
+      id: 0,
+      hidden: true,
+      "tid": "98833"
+    }],
 
   },
+  isTicketOpen: function(e) {
+    var that = this;
+    var idx = e.currentTarget.dataset.index;
+    var tickets = that.data.tickets;
+    for (let i = 0; i < tickets.length; i++) {
+      if (idx == i) {
+        tickets[i].hidden = !tickets[i].hidden;
+      } else {
+        tickets[i].hidden = true;
+      }
+    }
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+    this.setData({
+      tickets: tickets
+    });
+    return true;
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onLoad: function () {
+    var ticket_info_temp = wx.getStorageSync('ticket_info_storage');
+    for (var i = 0; i < ticket_info_temp.length; i++){
+      ticket_info_temp[i].id = i;
+      ticket_info_temp[i].hidden = true;
+    }
+    this.setData({
+      tickets: ticket_info_temp
+    })
   }
 })

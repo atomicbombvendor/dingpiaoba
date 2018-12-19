@@ -1,2 +1,40 @@
-<!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="header" style='text-align:center'>
+  提交的订单号
+</view>
+<view class="page__hd" hidden="true">
+  <view slot="title">
+    <i-row i-class="item">
+      <i-col span="24">
+        <i-input name="user_name " type="text" title="用户名 " placeholder="用户名 " maxlength='10000' value="12306账号 " />
+      </i-col>
+    </i-row>
+    <i-row i-class="item">
+      <i-col span="24">
+        <i-input name="tel_phone " type="number" title="电话 " placeholder="请输出电话 " maxlength='13' value="131212 " />
+      </i-col>
+    </i-row>
+    <i-row i-class="item">
+      <i-col span="24">
+        <i-button bind:click="handleClick">查询</i-button>
+      </i-col>
+    </i-row>
+  </view>
+</view>
+<view class="cells">
+  <view class="item" wx:for="{{tickets}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+    <view class="cdn" data-index="{{item.id}}">
+      <view class="number_flag">
+        <text class="">订单号: {{item.ticket_id}}</text>
+      </view>
+      <view class="number_flag">
+        <text class="">车次: {{item.train_number}}</text>
+      </view>
+    </view>
+    <view hidden="{{item.hidden}}" class="hidden_passenger grey_background">
+      <i-col span="20" i-class="col-class float_right">
+        <text class="input_name">订单号<text  class="red_text">（必填）</text></text>
+        <i-input name="ticket_{{item.id}}" type="text" placeholder="姓名" value="x1" maxlength='10000' />
+      </i-col>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,47 @@
+<i-sticky scrollTop="{{scrollTop}}">
+  <i-sticky-item i-class="i-sticky-demo-title">
+    <view slot="title">
+      <i-row i-class="item">
+        <i-col span="24">
+          <i-input name="user_name " type="text " title="用户名 " placeholder="用户名 " maxlength='10000' value="12306账号 " />
+        </i-col>
+      </i-row>
+      <i-row i-class="item">
+        <i-col span="24">
+          <i-input name="tel_phone " type="number " title="电话 " placeholder="请输出电话 " maxlength='13' value="131212 " />
+        </i-col>
+      </i-row>
+      <i-row i-class="item">
+        <i-col span=" 24 " class="x-btn x-subform-btn-add input_name ">
+          <text bindtap="add_passenger ">+添加记录</text>
+        </i-col>
+      </i-row>
+      <view>123213</view>
+    </view>
+    <view slot="content ">
+      <view class="i-sticky-demo-item">注册程序</view>
+      <view class="i-sticky-demo-item">场景值</view>
+      <view class="i-sticky-demo-item">注册页面</view>
+      <view class="i-sticky-demo-item">路由</view>
+      <view class="i-sticky-demo-item">模块化</view>
+      <view class="i-sticky-demo-item">API</view>
+      <view class="cells ">
+        <view class="item " wx:for="{{memberList}} " wx:for-index="idx " wx:for-item="item " wx:key="idx ">
+          <view bindtap="isOpen " class="cdn " data-index="{{item.id}} ">
+            <view>
+              <image class="img " src="{{item.iamges}} " mode="aspectFill " />
+              <text class="content ">{{item.cont}}</text>
+            </view>
+            <view>
+              <text class="discount ">{{item.discount}}</text>
+              <image class="icon_img " src="{{item.hidden ? '../../icon/index.png' : '../../icon/index_f.png'}} " mode="aspectFill " />
+            </view>
+          </view>
+          <view hidden="{{item.hiddena}} " class="hidden ">
+            <block>11111</block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </i-sticky-item>
+</i-sticky>

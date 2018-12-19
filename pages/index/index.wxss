@@ -1,3 +1,7 @@
+.container2 {
+  background: #f5f7fa;
+}
+
 /**index.wxss**/
 
 .userinfo {
@@ -8,7 +12,7 @@
 
 .userinfo-avatar {
   width: 128rpx;
-  height: 128rpx; 
+  height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
 }
@@ -80,9 +84,149 @@
   justify-content: center;
   display: flex;
   align-items: center;
-  line-height:3.0rem;
+  line-height: 3.0rem;
 }
 
-.hidden{
+.hidden {
   visibility: hidden;
+}
+
+.float_right {
+  margin-left: 10%;
+}
+
+.hidden_ticket {
+  background: #f0f0f0;
+
+}
+
+.hidden_passenger {
+  background: #f0f0f0;
+}
+
+.id_card_margin{
+  margin-bottom: 20rpx;
+}
+
+.grey_background {
+  background: #f0f0f0;
+}
+
+/* 折叠框 */
+
+.swiper-img {
+  width: 750rpx;
+  height: 300rpx;
+}
+
+.cells .item .cdn {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  /*border-bottom: 1rpx solid #f0f0f0;*/
+  background-color: #fff;
+  font-size: 32rpx;
+}
+
+.cells .item .cdn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  border-bottom: 0 solid #f0f0f0;
+  border-width: 1px;
+}
+
+.img {
+  height: 44rpx;
+  width: 44rpx;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 82rpx;
+}
+
+.icon_img {
+  height: 12rpx;
+  width: 20rpx;
+}
+
+.content {
+  margin-left: 15rpx;
+  line-height: 82rpx;
+  vertical-align: middle;
+}
+
+.discount {
+  line-height: 82rpx;
+  vertical-align: middle;
+  color: orange;
+  box-sizing: border-box;
+  padding-right: 20rpx;
+}
+
+.video-item {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* 数字表示 */
+
+.number_flag {
+  font-size: 0.7rem;
+  color: #fff;
+  background: #79afea;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.3rem;
+  margin-right: 0.3rem;
+}
+
+.x-subform-btn-add {
+  overflow: visible;
+  margin: 0.5rem 0;
+  height: 2.2rem;
+  width: 100%;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #248af9;
+  border: 1px dashed #e5e5e5;
+}
+
+.x-btn {
+  background-color: #fff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 2rem;
+  overflow: hidden;
+  text-align: center;
+  border: none;
+  margin: 0;
+  outline: 0;
+  line-height: 2rem;
+  color: #248af9;
+  transition: background 0.5s;
 }

@@ -1,1 +1,10 @@
-{}
+{
+  "usingComponents": {
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-input": "../../dist/input/index",
+    "i-button": "../../dist/button/index",
+    "i-collapse": "../../dist/collapse/index",
+    "i-collapse-item": "../../dist/collapse-item/index"
+  }
+}

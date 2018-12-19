@@ -11,119 +11,166 @@
     <text class="user-motto">{{motto}}</text>
   </view>
 </view> -->
-<view class="ticket_form">
-  <i-row i-class="notice ">
-    <i-col span="24" i-class="col-class">
-      <text class="notice notice_header red_text">关于购票注意事项</text>
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="notice notice_content notice_content_1">1.乘车地址信息，乘车日期，身份信息均可多选，只需要点击“添加”按钮，补充信息即可。</text>
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="notice otice_content notice_content_3">2.下单后请加QQ群：<text  class="red_text">486666932</text>，请提供订单号，并等待验证通过。</text>
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="notice otice_content notice_content_2">3. 按张数收费</text>
-    </i-col>
-  </i-row>
+<view class="container2">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="ticket_form">
+      <i-row i-class="notice ">
+        <i-col span="24" i-class="col-class">
+          <text class="notice notice_header red_text">关于购票注意事项</text>
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="notice notice_content notice_content_1">1.乘车地址信息，乘车日期，身份信息均可多选，只需要点击“添加”按钮，补充信息即可。</text>
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="notice otice_content notice_content_3">2.下单后请加QQ群：<text  class="red_text">486666932</text>，请提供订单号，并等待验证通过。</text>
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="notice otice_content notice_content_2">3. 按张数收费</text>
+        </i-col>
+      </i-row>
 
 
-  <i-row i-class="account_info panel">
-    <i-col span="24" i-class="col-class">
-      <text class="input_name">12306账号<text  class="red_text">（选填）</text></text>
-      <i-input autofocus placeholder="请输出12306账号" />
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="input_name">12306密码<text  class="red_text">（选填）</text></text>
-      <i-input type="password" autofocus placeholder="请输出12306密码" />
-    </i-col>
-  </i-row>
+      <i-row i-class="account_info panel">
+        <i-col span="20" i-class="col-class">
+          <text class="input_name">12306账号<text  class="red_text">（选填）</text></text>
+          <i-input name="account" type="text" placeholder="请输出12306账号" maxlength='10000' value="12306账号" />
+        </i-col>
+        <i-col span="20" i-class="col-class">
+          <text class="input_name">12306密码<text  class="red_text">（选填）</text></text>
+          <i-input name="account_password" type="text" placeholder="请输出12306密码" maxlength='10000' value="12306密码" />
+        </i-col>
+      </i-row>
 
-  <i-row i-class="train_info panel">
-    <i-col span="24" i-class="col-class">
-      <text class="input_name">乘车地址信息<text  class="red_text">（必填）</text></text>
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="red_text input_name">1.乘车日期可以多选</text>
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="red_text input_name">2.车次可以填写多个</text>
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="red_text input_name">3.座位可以多选</text>
-    </i-col>
+      <i-row i-class="train_info panel">
+        <i-col span="24" i-class="col-class">
+          <text class="input_name">乘车地址信息<text  class="red_text">（必填）</text></text>
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="red_text input_name">1.乘车日期可以填写多个，格式 2018-11-11</text>
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="red_text input_name">2.车次可以填写一个</text>
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="red_text input_name">3.座位可以填写多个</text>
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="red_text input_name">4.请使用空格分隔</text>
+        </i-col>
+        <view class="cells">
+          <view class="item" wx:for="{{ticket_info}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+            <view bindtap="isOpen" class="cdn" data-index="{{item.id}}">
+              <view class="number_flag">
+                <block wx:if="{{item.hidden}}">+ </block>
+                <block wx:else>- </block>
+                <text class="">{{item.id + 1}}</text>
+              </view>
+            </view>
+            <view hidden="{{item.hidden}}" class="hidden_ticket grey_background">
+              <i-col span="20" i-class="col-class float_right">
+                <text class="input_name">车次信息<text class="red_text">（必填，可填写多个）</text></text>
+                <i-input name="train_number" placeholder="车次信息" maxlength='10000' value="z23 z21" />
+              </i-col>
+              <i-col span="20" i-class="col-class float_right">
+                <text class="input_name">出发地<text class="red_text">（必填，可填写多个）</text></text>
+                <i-input name="start_from" placeholder="出发地" maxlength='10000' value="m1 m2" />
+              </i-col>
+              <!-- <i-col span="20" i-class="col-class float_right">
+              <text class="input_name">出发地备选<text class="red_text">（必填）</text></text>
+              <i-input id="start_from_backup" placeholder="出发地备选，使用空格分隔" />
+            </i-col> -->
+              <i-col span="20" i-class="col-class float_right">
+                <text class="input_name">目的地<text  class="red_text">（必填，可填写多个）</text></text>
+                <i-input name="end_to" placeholder="目的地" maxlength='10000' value="d1 d2" />
+              </i-col>
+              <!-- <i-col span="20" i-class="col-class float_right">
+              <text class="input_name">目的地备选<text  class="red_text">（必填）</text></text>
+              <i-input id="end_to_backup" placeholder="目的地备选，使用空格分隔" />
+            </i-col> -->
+              <i-col span="20" i-class="col-class float_right">
+                <text class="input_name">乘车日期<text  class="red_text">（必填，可填写多个）</text></text>
+                <i-input name="ticket_date" placeholder="乘车日期，格式2018-11-11" maxlength='10000' value="2018-11-11 2018-11-12" />
+              </i-col>
+              <i-col span="20" i-class="col-class float_right">
+                <text class="input_name">座位信息<text  class="red_text">（必填，可填写多个）</text></text>
+                <i-input name="seat" placeholder="座位信息" maxlength='10000' value="s1 s2" />
+              </i-col>
+            </view>
+          </view>
+        </view>
+      </i-row>
 
-    <i-col span="24" i-class="table col-class notice">
-      <i-col span="24" i-class="table table_tr">
-        <i-col span="2" i-class="table_td table_td_width ">
-          <text class="table_td_id red_text">1</text>
+      <i-row i-class="user_info panel">
+        <i-col span="24" i-class="col-class">
+          <text class="input_name">乘客信息<text  class="red_text">（必填）</text></text>
         </i-col>
-        <i-col span="7" i-class="table_td table_td_width borde_left">
-          <i-input autofocus placeholder="车次信息" />
-        </i-col>
-        <i-col span="7" i-class="table_td table_td_width borde_left">
-          <i-input type="text" autofocus placeholder="出发地" maxlength='18' />
-        </i-col>
-        <i-col span="7" i-class="table_td table_td_width borde_left">
-          <i-input type="text" autofocus placeholder="目的地" maxlength='18' />
-        </i-col>
+
+        <view class="cells">
+          <view class="item" wx:for="{{passengers_info}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+            <view class="cdn">
+              <view class="number_flag" bindtap="isPassengerOpen" data-index="{{item.id}}">
+                <block wx:if="{{item.hidden}}">+ </block>
+                <block wx:else>- </block>
+                <text class="">{{item.id + 1}}</text>
+              </view>
+              <view>
+                <!-- <text class="tip red_text" bindtap="delete_ticket({{item.id}})">删除</text> -->
+                <image class="img" data-index="{{item.id}}" bindtap="delete_passenger" src="{{item.hidden ? '../../icon/delete.png' : '../../icon/delete.png'}}" mode="aspectFill" />
+              </view>
+            </view>
+            <view hidden="{{item.hidden}}" class="hidden_passenger grey_background">
+              <i-col span="20" i-class="col-class float_right">
+                <text class="input_name">姓名<text  class="red_text">（必填）</text></text>
+                <i-input name="passenger_name_{{item.id}}" type="text" placeholder="姓名" value="x1" maxlength='10000' />
+              </i-col>
+              <i-col span="20" i-class="col-class float_right id_card_margin">
+                <text class="input_name">身份证号<text  class="red_text">（必填）</text></text>
+                <i-input name="passenger_id_card_{{item.id}}" type="text" placeholder="身份证号" maxlength='18' value="id1" />
+              </i-col>
+            </view>
+          </view>
+        </view>
+      </i-row>
+      <i-col span="24" class="x-btn x-subform-btn-add input_name">
+        <text bindtap="add_passenger">+添加记录</text>
       </i-col>
-      <i-col span="24" i-class="table table_tr">
-        <i-col span="12" i-class="table_td table_td_width borde_left">
-          <i-input type="text" autofocus placeholder="乘车日期" maxlength='18' />
-        </i-col>
-        <i-col span="12" i-class="table_td table_td_width borde_left">
-          <i-input type="text" autofocus placeholder="座位信息" maxlength='18' />
-        </i-col>
-      </i-col>
-    </i-col>
-  </i-row>
 
-  <i-row i-class="user_info panel">
-    <i-col span="24" i-class="col-class">
-      <text class="input_name">乘客信息<text  class="red_text">（必填）</text></text>
-    </i-col>
-    <i-col span="24" i-class="table col-class notice">
-      <i-col span="24" i-class=" table table_th">
-        <i-col span="2" i-class="table_td">ID</i-col>
-        <i-col span="6" i-class="table_td borde_left">姓名</i-col>
-        <i-col span="16" i-class="table_td borde_left">身份证号</i-col>
+      <i-row i-class="contact_info panel">
+        <i-col span="24" i-class="col-class">
+          <text class="red_text input_name">请留下您的联系方式，便于出票后通知您</text>
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="input_name">手机号码<text  class="red_text">（必填）</text></text>
+          <i-input name="tel_phone" type="number" placeholder="请输出手机号码" maxlength='13' value="1111" />
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="input_name">微信号<text  class="red_text">（必填）</text></text>
+          <i-input name="wechat_id" type="text" placeholder="请输出微信号" maxlength='10000' value="wx1111" />
+        </i-col>
+        <i-col span="24" i-class="col-class">
+          <text class="input_name">QQ号码<text  class="red_text">（选填）</text></text>
+          <i-input name="qq_number" type="number" placeholder="请输出QQ号" maxlength='10000' value="qq1111" />
+        </i-col>
+      </i-row>
+    </view>
+    <i-row i-class="contact_info panel">
+      <i-col span="24" i-class="col-class">
+        <text class="red_text input_name">选择成功率</text>
       </i-col>
-      <view class="passenger_info" wx:for="{{passenger_num}}" wx:key="{{index}}" wx:for-index="index" wx:for-item="passenger">
-        <i-col span="24" i-class="table table_tr">
-          <i-col span="2" i-class="table_td table_td_width ">
-            <text class="table_td_id red_text">{{passenger.id}}</text>
-          </i-col>
-          <i-col span="6" i-class="table_td table_td_width borde_left">
-            <i-input autofocus placeholder="姓名" value="{{passenger.name}}"/>
-          </i-col>
-          <i-col span="16" i-class="table_td table_td_width borde_left">
-            <i-input type="text" autofocus placeholder="身份证号" maxlength='18' value="{{passenger.ID_num}}"/>
-          </i-col>
+      <view class="progress-item">
+        <i-progress percent="{{ percent }}" status="{{ status }}"></i-progress>
+        <i-col span="12">
+          <i-button bindclick="handleAdd" type="ghost">增加</i-button>
+        </i-col>
+        <i-col span="12">
+          <i-button bindclick="handleReduce" type="ghost">减少</i-button>
         </i-col>
       </view>
-      <i-col span="4" i-class="hidden">AAA</i-col>
-      <i-col span="8" i-class="add_passenger" bindtap="add_passenger">+ 添加</i-col>
-      <i-col span="8" i-class="delete_passenger" bindtap="delete_passenger">- 删除</i-col>
-      <i-col span="4" i-class="hidden">AAA</i-col>
-    </i-col>
-  </i-row>
-
-  <i-row i-class="contact_info panel">
-    <i-col span="24" i-class="col-class">
-      <text class="red_text input_name">请留下您的联系方式，便于出票后通知您</text>
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="input_name">手机号码<text  class="red_text">（必填）</text></text>
-      <i-input type="number" autofocus placeholder="请输出手机号码" maxlength='13' />
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="input_name">微信号<text  class="red_text">（必填）</text></text>
-      <i-input type="text" autofocus placeholder="请输出微信号" />
-    </i-col>
-    <i-col span="24" i-class="col-class">
-      <text class="input_name">QQ号码<text  class="red_text">（选填）</text></text>
-      <i-input type="number" autofocus placeholder="请输出QQ号" />
-    </i-col>
-  </i-row>
+    </i-row>
+    <i-row i-class="contact_info panel">
+      <i-col span="24" class="x-btn x-subform-btn-add input_name">
+        <button name="submit_form" form-type="submit" type="ghost">提交信息</button>
+      </i-col>
+    </i-row>
+  </form>
 </view>
