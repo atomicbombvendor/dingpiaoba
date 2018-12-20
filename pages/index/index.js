@@ -261,7 +261,7 @@ Page({
 
     wx.request({
       method: 'GET',
-      url: 'http://127.0.0.1:5000/wx/',
+      url: 'http://xiaobaili.applinzi.com/test3/',
       data: {
         account: account,
         account_password: account_password,
@@ -278,10 +278,16 @@ Page({
         passenger_num: passenger_num
       },
       success: function(res) {
-        if (res.data.result != null) {
+        var temp = res.data;
+        var reg = new RegExp("<script(.+?)script>", "g");//正则表达式，第一个参数是目标对象，第二个参数g,表示全部替换。
+        temp = temp.replace(reg, "");
+        temp = temp.replace("'", "\"");
+        var result = JSON.parse(temp);
+
+        if (result != null) {
           var ticket_info_storage_temp = that.data.ticket_info_storage;
-          ticket_info_storage_temp.push(res.data.result);
-          var tid = res.data.result.ticket_id;
+          ticket_info_storage_temp.push(result);
+          var tid = result.ticket_id;
           wx.setStorageSync('ticket_info_storage', ticket_info_storage_temp)
           that.setData({
             ticket_info_storage: ticket_info_storage_temp

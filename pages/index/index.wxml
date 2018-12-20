@@ -107,7 +107,7 @@
 
         <view class="cells">
           <view class="item" wx:for="{{passengers_info}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-            <view class="cdn">
+            <view class="cdn" bindtap="isPassengerOpen" data-index="{{item.id}}">
               <view class="number_flag" bindtap="isPassengerOpen" data-index="{{item.id}}">
                 <block wx:if="{{item.hidden}}">+ </block>
                 <block wx:else>- </block>
@@ -115,7 +115,7 @@
               </view>
               <view>
                 <!-- <text class="tip red_text" bindtap="delete_ticket({{item.id}})">删除</text> -->
-                <image class="img" data-index="{{item.id}}" bindtap="delete_passenger" src="{{item.hidden ? '../../icon/delete.png' : '../../icon/delete.png'}}" mode="aspectFill" />
+                <image class="img" data-index="{{item.id}}" catchtap="delete_passenger" src="{{item.hidden ? '../../icon/delete.png' : '../../icon/delete.png'}}" mode="aspectFill" />
               </view>
             </view>
             <view hidden="{{item.hidden}}" class="hidden_passenger grey_background">
