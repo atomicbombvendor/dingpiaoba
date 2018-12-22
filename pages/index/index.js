@@ -37,16 +37,16 @@ Page({
   onLoad: function() {
 
     var ticket_info_temp = wx.getStorageSync('ticket_info_storage');
-    if (ticket_info_temp != ""){
+    if (ticket_info_temp != "") {
       this.setData({
         ticket_info_storage: ticket_info_temp
       })
-    }else{
+    } else {
       this.setData({
         ticket_info_storage: []
       })
     }
-    
+
 
     if (app.globalData.userInfo) {
       this.setData({
@@ -244,6 +244,11 @@ Page({
     return content;
   },
   formSubmit: function(e) {
+
+    wx.showLoading({
+      title: '提交...',
+    })
+
     var that = this;
     var account = e.detail.value.account;
     var account_password = e.detail.value.account_password;
@@ -259,9 +264,11 @@ Page({
     var wechat_id = e.detail.value.wechat_id
     var tel_phone = e.detail.value.tel_phone
 
+    that.sleep(3000);
+
     wx.request({
       method: 'GET',
-      url: 'http://xiaobaili.applinzi.com/test3/',
+      url: 'https://xiaobaili.applinzi.com/wx_add/',
       data: {
         account: account,
         account_password: account_password,
@@ -278,23 +285,32 @@ Page({
         passenger_num: passenger_num
       },
       success: function(res) {
+
+        if (res.statusCode != 200) {
+          wx.showModal({
+            title: '网络错误',
+            content: 请等待10秒钟重试,
+            success: function(res) {
+              if (res.confirm) {
+                console.log('弹框后点取消')
+              } else {
+                console.log('弹框后点取消')
+              }
+            }
+          })
+          return;
+        }
         var temp = res.data;
-        var reg = new RegExp("<script(.+?)script>", "g");//正则表达式，第一个参数是目标对象，第二个参数g,表示全部替换。
+        var reg = new RegExp("<script(.+?)script>", "g"); //正则表达式，第一个参数是目标对象，第二个参数g,表示全部替换。
         temp = temp.replace(reg, "");
         temp = temp.replace("'", "\"");
         var result = JSON.parse(temp);
 
         if (result != null) {
-          var ticket_info_storage_temp = that.data.ticket_info_storage;
-          ticket_info_storage_temp.push(result);
-          var tid = result.ticket_id;
-          wx.setStorageSync('ticket_info_storage', ticket_info_storage_temp)
-          that.setData({
-            ticket_info_storage: ticket_info_storage_temp
-          })
+          that.update_storage(result);
           wx.showModal({
             title: '订单编号',
-            content: tid,
+            content: result.ticket_id,
             success: function(res) {
               if (res.confirm) {
                 console.log('弹框后点取消')
@@ -312,6 +328,9 @@ Page({
       error: function(data) {
         alert('error');
         alert(data);
+      },
+      complete: () => {
+        wx.hideLoading()
       }
     });
   },
@@ -393,5 +412,35 @@ Page({
     var wechat_id = e.detail.data.wechat_id
     var qq_number = e.detail.data.qq_number
 
+  },
+  // 防止添加重复的ticket_id到数据库。好像没有什么用。
+  update_storage: function(ticket) {
+    var that = this;
+    var exists = false;
+    var ticket_info_storage_temp = that.data.ticket_info_storage;
+    for (var i = 0; i < ticket_info_storage_temp.length; i++) {
+      if (ticket_info_storage_temp[i].ticket_id == ticket.ticket_id) {
+        exists = true;
+      }
+    }
+    if (!exists) {
+      ticket_info_storage_temp.push(ticket);
+      that.setData({
+        ticket_info_storage: ticket_info_storage_temp
+      });
+      wx.setStorageSync('ticket_info_storage', ticket_info_storage_temp);
+    }
+  },
+  //参数n为休眠时间，单位为毫秒:
+  sleep: function(n) {
+    var start = new Date().getTime();
+    //  console.log('休眠前：' + start);
+    while (true) {
+      if (new Date().getTime() - start > n) {
+        break;
+      }
+    }
+    // console.log('休眠后：' + new Date().getTime());
   }
+
 })
