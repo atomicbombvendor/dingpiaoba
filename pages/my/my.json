@@ -6,5 +6,10 @@
     "i-button": "../../dist/button/index",
     "i-collapse": "../../dist/collapse/index",
     "i-collapse-item": "../../dist/collapse-item/index"
+  },
+  "enablePullDownRefresh": true,
+  "window": {
+    
+    "backgroundTextStyle": "black"
   }
 }

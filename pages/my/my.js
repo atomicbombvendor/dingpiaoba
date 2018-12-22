@@ -26,9 +26,22 @@ Page({
     });
     return true;
   },
-  onLoad: function () {
+  onLoad: function() {
     var ticket_info_temp = wx.getStorageSync('ticket_info_storage');
-    for (var i = 0; i < ticket_info_temp.length; i++){
+    for (var i = 0; i < ticket_info_temp.length; i++) {
+      ticket_info_temp[i].id = i;
+      ticket_info_temp[i].hidden = true;
+    }
+    this.setData({
+      tickets: ticket_info_temp
+    })
+  },
+  onPullDownRefresh: function() {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    var that = this;
+    var ticket_info_temp = wx.getStorageSync('ticket_info_storage');
+    for (var i = 0; i < ticket_info_temp.length; i++) {
       ticket_info_temp[i].id = i;
       ticket_info_temp[i].hidden = true;
     }
