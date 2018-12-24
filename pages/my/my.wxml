@@ -38,6 +38,7 @@
       <i-input name="ticket_train_number_{{item.id}}" value="{{ item.train_number }}" type="text" title="车次" disabled/>
       <i-input name="ticket_train_date_{{item.id}}" value="{{ item.ticket_date }}" type="textarea" title="乘车日期" disabled />
       <i-input name="ticket_passengers_num_{{item.id}}" value="{{ item.passenger_num }}" type="text" title="乘车人数" disabled/>
+      <!-- <i-input name="ticket_passengers_{{item.id}}" value="{{ item.passengers }}" type="textarea" title="乘客" disabled/> -->
       <i-input name="ticket_seat_type_{{item.id}}" value="{{ item.seat_type }}" type="textarea" title="座位" disabled/>
       <i-input name="ticket_success_rate_{{item.id}}" value="{{ item.success_rate }}" type="number" title="成功率" disabled/>
       <i-input name="ticket_price_{{item.id}}" value="{{ item.price }}" type="number" title="价格" disabled/>

@@ -447,6 +447,14 @@ Page({
       }
     }
     // console.log('休眠后：' + new Date().getTime());
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '订车票吧',
+      desc: '我正在预订火车票，快来使用吧',
+      imageUrl: '../../icon/timg.jpg',
+      path: 'pages/index/index?id=123'
+    }
   }
 
 })
