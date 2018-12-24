@@ -25,8 +25,9 @@ Page({
       hidden: true,
       "name": "",
       "id_card": ""
-    }]
-
+    }],
+    price: 0,
+    default_interval_price: 20
   },
   //事件处理函数
   bindViewTap: function() {
@@ -123,11 +124,12 @@ Page({
     })
   },
   handleAdd() {
-
-    if (this.data.status == 'success') {
-      return
+    var that = this;
+    if (that.data.status == 'success') {
+      return;
     }
-    var percent_temp = this.data.percent + 25
+    var percent_temp = that.data.percent + 25;
+    var price_temp = that.data.price + that.data.default_interval_price;
     if (percent_temp > 80) {
       percent_temp = 96
     }
@@ -135,23 +137,27 @@ Page({
     if (percent_temp > 90) {
       this.setData({
         percent: percent_temp,
+        price: price_temp,
         status: 'success'
       });
     } else {
       this.setData({
-        percent: percent_temp
+        percent: percent_temp,
+        price: price_temp
       });
     }
   },
   handleReduce() {
-
-    var percent_temp = this.data.percent - 25
+    var that = this;
+    var percent_temp = that.data.percent - 25
+    var price_temp = that.data.price - that.data.default_interval_price;
     if (this.data.percent == 96) {
       percent_temp = 75
     }
     if (this.data.percent <= 0) return;
     this.setData({
       percent: percent_temp,
+      price: price_temp,
       status: 'normal'
     });
   },

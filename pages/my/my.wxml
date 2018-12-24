@@ -22,7 +22,32 @@
 </view>
 <view class="cells">
   <view class="item" wx:for="{{tickets}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-    <view class="cdn" data-index="{{item.id}}">
+    <i-swipeout i-class="i-swipeout-demo-item" operateWidth="{{210}}" data-index="{{item.id}}" bindtap='isTicketOpen'>
+      <view slot="content">
+        <i-cell i-class="i-cell-padding">
+        <text style="float:left" class="number_flag">订单号: {{item.ticket_id}}</text>
+        <text style="float:right" class="number_flag">车次: {{item.train_number}}</text>
+        </i-cell>
+      </view>
+      <!-- <view slot="button" class="i-swipeout-demo-button-group">
+        <view class="i-swipeout-demo-button">删除</view>
+      </view> -->
+    </i-swipeout>
+    <view hidden="{{item.hidden}}" class="hidden_passenger grey_background">
+      <i-input name="ticket_tid_{{item.id}}" value="{{ item.ticket_id }}" type="text" title="订单号" disabled/>
+      <i-input name="ticket_train_number_{{item.id}}" value="{{ item.train_number }}" type="text" title="车次" disabled/>
+      <i-input name="ticket_train_date_{{item.id}}" value="{{ item.ticket_date }}" type="textarea" title="乘车日期" disabled />
+      <i-input name="ticket_passengers_num_{{item.id}}" value="{{ item.passenger_num }}" type="text" title="乘车人数" disabled/>
+      <i-input name="ticket_seat_type_{{item.id}}" value="{{ item.seat_type }}" type="textarea" title="座位" disabled/>
+      <i-input name="ticket_success_rate_{{item.id}}" value="{{ item.success_rate }}" type="number" title="成功率" disabled/>
+      <i-input name="ticket_price_{{item.id}}" value="{{ item.price }}" type="number" title="价格" disabled/>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="cells">
+  <view class="item" wx:for="{{tickets}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+    <view class="cdn" data-index="{{item.id}}" bindtap='isTicketOpen'>
       <view class="number_flag">
         <text class="">订单号: {{item.ticket_id}}</text>
       </view>
@@ -31,10 +56,13 @@
       </view>
     </view>
     <view hidden="{{item.hidden}}" class="hidden_passenger grey_background">
-      <i-col span="20" i-class="col-class float_right">
-        <text class="input_name">订单号<text  class="red_text">（必填）</text></text>
-        <i-input name="ticket_{{item.id}}" type="text" placeholder="姓名" value="x1" maxlength='10000' />
-      </i-col>
+      <i-input name="ticket_tid_{{item.id}}" value="{{ item.ticket_id }}" type="textarea" title="订单号" disabled/>
+      <i-input name="ticket_train_number_{{item.id}}" value="{{ item.train_number }}" type="textarea" title="车次" disabled/>
+      <i-input name="ticket_train_date_{{item.id}}" value="{{ item.ticket_date }}" type="textarea" title="乘车日期" disabled />
+      <i-input name="ticket_passengers_num_{{item.id}}" value="{{ item.passenger_num }}" type="textarea" title="乘车人数" disabled/>
+      <i-input name="ticket_seat_type_{{item.id}}" value="{{ item.seat_type }}" type="textarea" title="座位" disabled/>
+      <i-input name="ticket_success_rate_{{item.id}}" value="{{ item.success_rate }}" type="number" title="成功率" disabled/>
+      <i-input name="ticket_price_{{item.id}}" value="{{ item.price }}" type="number" title="价格" disabled/>
     </view>
   </view>
-</view>
+</view> -->

@@ -7,10 +7,6 @@ page {
   height: 300rpx;
 }
 
-.cell-header{
-
-}
-
 .cells .item .cdn {
   position: relative;
   box-sizing: border-box;

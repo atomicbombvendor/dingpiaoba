@@ -33,11 +33,11 @@
       <i-row i-class="account_info panel">
         <i-col span="20" i-class="col-class">
           <text class="input_name">12306账号<text  class="red_text">（选填）</text></text>
-          <i-input name="account" type="text" placeholder="请输出12306账号" maxlength='10000' value="12306账号" />
+          <i-input name="account" type="text" placeholder="请输出12306账号" maxlength='10000' />
         </i-col>
         <i-col span="20" i-class="col-class">
           <text class="input_name">12306密码<text  class="red_text">（选填）</text></text>
-          <i-input name="account_password" type="text" placeholder="请输出12306密码" maxlength='10000' value="12306密码" />
+          <i-input name="account_password" type="text" placeholder="请输出12306密码" maxlength='10000'/>
         </i-col>
       </i-row>
 
@@ -69,11 +69,11 @@
             <view hidden="{{item.hidden}}" class="hidden_ticket grey_background">
               <i-col span="20" i-class="col-class float_right">
                 <text class="input_name">车次信息<text class="red_text">（必填，可填写多个）</text></text>
-                <i-input name="train_number" placeholder="车次信息" maxlength='10000' value="z23 z21" />
+                <i-input name="train_number" placeholder="zxx1 zxx2" maxlength='10000' />
               </i-col>
               <i-col span="20" i-class="col-class float_right">
                 <text class="input_name">出发地<text class="red_text">（必填，可填写多个）</text></text>
-                <i-input name="start_from" placeholder="出发地" maxlength='10000' value="m1 m2" />
+                <i-input name="start_from" placeholder="xx1 xx2" maxlength='10000'/>
               </i-col>
               <!-- <i-col span="20" i-class="col-class float_right">
               <text class="input_name">出发地备选<text class="red_text">（必填）</text></text>
@@ -81,7 +81,7 @@
             </i-col> -->
               <i-col span="20" i-class="col-class float_right">
                 <text class="input_name">目的地<text  class="red_text">（必填，可填写多个）</text></text>
-                <i-input name="end_to" placeholder="目的地" maxlength='10000' value="d1 d2" />
+                <i-input name="end_to" placeholder="xx1 xx2" maxlength='10000'/>
               </i-col>
               <!-- <i-col span="20" i-class="col-class float_right">
               <text class="input_name">目的地备选<text  class="red_text">（必填）</text></text>
@@ -89,11 +89,11 @@
             </i-col> -->
               <i-col span="20" i-class="col-class float_right">
                 <text class="input_name">乘车日期<text  class="red_text">（必填，可填写多个）</text></text>
-                <i-input name="ticket_date" placeholder="乘车日期，格式2018-11-11" maxlength='10000' value="2018-11-11 2018-11-12" />
+                <i-input name="ticket_date" placeholder="2019-xx-xx 2019-xx-xx" maxlength='10000'/>
               </i-col>
               <i-col span="20" i-class="col-class float_right">
                 <text class="input_name">座位信息<text  class="red_text">（必填，可填写多个）</text></text>
-                <i-input name="seat" placeholder="座位信息" maxlength='10000' value="s1 s2" />
+                <i-input name="seat" placeholder="xx座 xx座" maxlength='10000'/>
               </i-col>
             </view>
           </view>
@@ -121,11 +121,11 @@
             <view hidden="{{item.hidden}}" class="hidden_passenger grey_background">
               <i-col span="20" i-class="col-class float_right">
                 <text class="input_name">姓名<text  class="red_text">（必填）</text></text>
-                <i-input name="passenger_name_{{item.id}}" type="text" placeholder="姓名" value="x1" maxlength='10000' />
+                <i-input name="passenger_name_{{item.id}}" type="text" placeholder="姓名" maxlength='10000' />
               </i-col>
               <i-col span="20" i-class="col-class float_right id_card_margin">
                 <text class="input_name">身份证号<text  class="red_text">（必填）</text></text>
-                <i-input name="passenger_id_card_{{item.id}}" type="text" placeholder="身份证号" maxlength='18' value="id1" />
+                <i-input name="passenger_id_card_{{item.id}}" type="text" placeholder="身份证号" maxlength='18'/>
               </i-col>
             </view>
           </view>
@@ -141,21 +141,23 @@
         </i-col>
         <i-col span="24" i-class="col-class">
           <text class="input_name">手机号码<text  class="red_text">（必填）</text></text>
-          <i-input name="tel_phone" type="number" placeholder="请输出手机号码" maxlength='13' value="1111" />
+          <i-input name="tel_phone" type="number" placeholder="请输出手机号码" maxlength='13' />
         </i-col>
         <i-col span="24" i-class="col-class">
           <text class="input_name">微信号<text  class="red_text">（必填）</text></text>
-          <i-input name="wechat_id" type="text" placeholder="请输出微信号" maxlength='10000' value="wx1111" />
+          <i-input name="wechat_id" type="text" placeholder="请输出微信号" maxlength='10000'/>
         </i-col>
         <i-col span="24" i-class="col-class">
           <text class="input_name">QQ号码<text  class="red_text">（选填）</text></text>
-          <i-input name="qq_number" type="number" placeholder="请输出QQ号" maxlength='10000' value="qq1111" />
+          <i-input name="qq_number" type="number" placeholder="请输出QQ号" maxlength='10000'/>
         </i-col>
       </i-row>
     </view>
     <i-row i-class="contact_info panel">
       <i-col span="24" i-class="col-class">
         <text class="red_text input_name">选择成功率</text>
+        <text class="red_text input_name"> 当前价格</text>
+        <text class="red_text input_name">{{price}}￥</text>
       </i-col>
       <view class="progress-item">
         <i-progress percent="{{ percent }}" status="{{ status }}"></i-progress>
